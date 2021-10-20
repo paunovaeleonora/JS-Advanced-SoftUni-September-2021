@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="template.css">
+    <script src="solution.js"></script>
+    <title>Pascal or Camel Case</title>
+</head>
+
+<body>
+    <form>
+        <div>
+            <label for="text">Text: </label>
+            <input type="text" id="text">
+        </div>
+        <div>
+            <label for="naming-convention">Naming Convention: </label>
+            <input type="text" id="naming-convention">
+        </div>
+
+        <input type="button" onclick="solve()" value="Transform">
+        <script>
+            function solve() {
+
+                function convertToCamelCase(input) {
+                    let result = [];
+                    for (i = 0; i < input.length; i++) {
+                        let word = input[i];
+                        let newWord;
+                        if (i === 0) {
+                            newWord = word.toLowerCase();
+                        } else {
+                            newWord = word[0].toUpperCase() + word.slice(1).toLowerCase();
+                        }
+                        result.push(newWord);;
+                    }
+                    return result.join('');
+                }
+
+                function convertToPascalCase(input) {
+                    let result = [];
+                    for (i = 0; i < input.length; i++) {
+                        let word = input[i];
+                        let newWord = word[0].toUpperCase() + word.slice(1).toLowerCase();
+                        result.push(newWord);
+                    }
+                    return result.join('');
+                }
+                let userInput = document.getElementById('text').value.split(' ');
+                let convention = document.getElementById("naming-convention").value;
+                let result = '';
+                if (convention == 'Camel Case') {
+                    result = convertToCamelCase(userInput);
+
+                } else if (convention == 'Pascal Case') {
+                    result = convertToPascalCase(userInput);
+                } else {
+                    result = 'Error!';
+
+                };
+
+                document.getElementById('result').textContent = result;
+            }
+        </script>
+    </form>
+    <div class="result-container">Result: <span id="result"></span></div>
+</body>
+
+</html>
